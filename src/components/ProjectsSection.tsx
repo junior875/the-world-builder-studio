@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '@/lib/i18n';
 import { projects, type Project } from '@/data/projects';
-import { useState } from 'react';
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   const { t } = useI18n();
-  const [expanded, setExpanded] = useState(false);
 
   return (
     <motion.div
@@ -13,20 +11,17 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative bg-card border border-border rounded-xl p-6 md:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_hsl(157_69%_37%/0.1)] hover:border-primary/20 cursor-pointer"
-      onClick={() => setExpanded(!expanded)}
+      className="group relative bg-card border border-border rounded-xl p-6 md:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_hsl(157_69%_37%/0.1)] hover:border-primary/20"
     >
+      <p className="font-mono-dm text-[11px] text-muted-foreground tracking-[0.08em] mb-3">
+        {project.number}
+      </p>
+
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="font-display text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors">
-            {project.id === 'hivegrid' ? 'HiveGrid' :
-             project.id === 'atmos' ? 'Atmos' :
-             project.id === 'td-edge' ? 'TD-Edge' :
-             project.id === 'sentria' ? 'SentrIA' :
-             project.id === 'recruitment-ai' ? 'Recruitment AI' :
-             project.id === 'deliveryroute' ? 'DeliveryRoute AI' :
-             'IziBar'}
+            {project.name}
           </h3>
           <p className="font-mono-dm text-xs text-muted-foreground mt-1">
             {t(project.typeEn, project.typePt)}
@@ -42,13 +37,25 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         {t(project.descEn, project.descPt)}
       </p>
 
+      {project.imageSrc && (
+        <div className="mb-6 overflow-hidden rounded-xl border border-border bg-secondary/40">
+          <img
+            src={project.imageSrc}
+            alt={project.imageAlt || project.name}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      )}
+
       {/* Stats */}
       {project.stats.length > 0 && (
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 overflow-hidden transition-all duration-300 ${expanded ? 'max-h-40' : 'max-h-0 mb-0'}`}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           {project.stats.map((stat, i) => (
             <div key={i} className="text-center p-3 rounded-lg bg-secondary/50">
               <p className="font-mono-dm text-lg text-primary">{stat.value}</p>
-              <p className="font-mono-dm text-[10px] text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+              <p className="font-mono-dm text-[10px] text-muted-foreground uppercase tracking-wider">
+                {t(stat.labelEn, stat.labelPt)}
+              </p>
             </div>
           ))}
         </div>
@@ -58,6 +65,21 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       <blockquote className="font-body italic text-sm text-muted-foreground border-l-2 border-primary/30 pl-4 mb-6">
         {t(project.quoteEn, project.quotePt)}
       </blockquote>
+
+      {project.meta && project.meta.length > 0 && (
+        <div className="flex flex-wrap gap-6 border-t border-border pt-5 mb-4">
+          {project.meta.map((item) => (
+            <div key={`${project.id}-${item.label}`} className="min-w-[180px]">
+              <p className="font-mono-dm text-[10px] uppercase tracking-[0.12em] text-muted-foreground mb-1">
+                {item.label}
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {t(item.valueEn, item.valuePt)}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Stack */}
       <div className="flex flex-wrap gap-1.5">
@@ -75,7 +97,7 @@ const ProjectsSection = () => {
   const { t } = useI18n();
 
   return (
-    <section id="work" className="py-24 md:py-32">
+    <section id="projects" className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

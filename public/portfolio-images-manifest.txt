@@ -1,0 +1,18 @@
+Portfolio image manifest
+
+1. portfolio-photo-1-atmos-kit.jpg
+2. portfolio-photo-2-investor-delivery.jpg
+3. portfolio-photo-3-waffle.jpg
+4. portfolio-photo-4-bread.jpg
+5. portfolio-photo-5-startup-weekend.jpg
+6. portfolio-photo-6-simposio-ic.jpg
+extra. izibar.png
+
+Arquivos gerados:
+c:\code\portifólio\the-world-builder-studio\public\portfolio-photo-1-atmos-kit.jpg
+c:\code\portifólio\the-world-builder-studio\public\portfolio-photo-2-investor-delivery.jpg
+c:\code\portifólio\the-world-builder-studio\public\portfolio-photo-3-waffle.jpg
+c:\code\portifólio\the-world-builder-studio\public\portfolio-photo-4-bread.jpg
+c:\code\portifólio\the-world-builder-studio\public\portfolio-photo-5-startup-weekend.jpg
+c:\code\portifólio\the-world-builder-studio\public\portfolio-photo-6-simposio-ic.jpg
+c:\code\portifólio\the-world-builder-studio\public\izibar.png

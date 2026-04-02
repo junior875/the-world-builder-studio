@@ -5,7 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Globe } from 'lucide-react';
 
 const navLinks = [
-  { en: 'Work', pt: 'Trabalhos', href: '#work' },
+  { en: 'Work', pt: 'Trabalhos', href: '#projects' },
+  { en: 'BIA', pt: 'BIA', href: '#bia' },
+  { en: 'E.VA', pt: 'E.VA', href: '#eva' },
   { en: 'About', pt: 'Sobre', href: '#about' },
   { en: 'Contact', pt: 'Contato', href: '#contact' },
 ];
@@ -34,7 +36,7 @@ const Navbar = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/70 backdrop-blur-xl border-b border-border' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#" className="font-mono-dm text-sm tracking-widest uppercase text-foreground">
-            JOSÉ IZIDORO
+            JOSÉ EDUARDO IZIDORO JÚNIOR · 23 ANOS
           </a>
 
           <div className="flex items-center gap-8">
