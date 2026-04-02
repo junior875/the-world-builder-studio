@@ -8,9 +8,15 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    allowedHosts: ["the-world-builder-studio-production.up.railway.app"],
     hmr: {
       overlay: false,
     },
+  },
+  preview: {
+    host: "::",
+    port: 8080,
+    allowedHosts: ["the-world-builder-studio-production.up.railway.app"],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
